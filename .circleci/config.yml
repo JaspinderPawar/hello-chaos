@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/hello-chaos
+    docker:
+      - image: circleci/node:latest     
+    steps:
+      - checkout
+      - run:
+          name: Install System Dependencies
+          command: |
+            sudo apt-get update -qq
+      - run:
+          name: Install Node dependencies
+          command: |
+             npm install      
+      - run: bash .circleci/setup-heroku.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "b1:c9:ad:27:ba:c7:96:a6:c8:02:90:e7:d3:75:04:6f"
+      - deploy:
+          name: Deploy Master to Heroku
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                git push heroku master
+            fi
