@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.16.4"
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "newrelic": "^5.0.0",
+    "rollbar": "^2.5.1"
   },
   "engines": {
     "node": "8.11.x"
