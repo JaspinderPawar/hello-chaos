@@ -2,8 +2,8 @@ version: 2
 jobs:
   build:
     working_directory: ~/hello-chaos
-     docker:
-      - image: circleci/node:lts
+    docker:
+      - image: circleci/node:latest     
     steps:
       - checkout
       - run:
