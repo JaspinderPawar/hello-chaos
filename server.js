@@ -6,13 +6,13 @@ dotenv.load();
 var Rollbar = require('rollbar');
 var rollbar = new Rollbar(process.env.ROLLBAR_ACCESS_TOKEN);
 const app = express()
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => res.send('Hello chaos!'))
 
 app.get('/error', (req, res) =>{
     try {
-        throw new Error('something bad happened')
+        throw new Error('something bad happened in test')
     } catch (error) {
         rollbar.error(error)
     }   
